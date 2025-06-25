@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from "../UI-Components/Card";
-import { Badge } from "../UI-Components/badge";
+import { Badge } from "../UI-Components/Badge";
 
 export default function VideoInteractions({
   currentTime,
