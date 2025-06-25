@@ -4,13 +4,13 @@ import VideoControls from "./VideoControls";
 import CommentsSection from "./CommentsSection";
 import VideoInteractions from "./VideoInteractions";
 
-const VideoPlayer = ({
-  hlsUrl = "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8",
-  mp4Url = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
-}) => {
+const VideoPlayer = () => {
   const videoRef = useRef(null);
   const hlsRef = useRef(null);
-
+  const hlsUrl =
+    "https://demo.unified-streaming.com/k8s/features/stable/video/tears-of-steel/tears-of-steel.ism/.m3u8";
+  const mp4Url =
+    "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);

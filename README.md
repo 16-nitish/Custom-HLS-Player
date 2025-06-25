@@ -31,7 +31,7 @@ A fully customizable, modern **HLS video player** built with React, featuring ad
 
 - React (Functional Components + Hooks)
 - HLS.js for adaptive streaming
-- Tailwind CSS for UI
+- Tailwind CSS & Headless UI for User Interface
 - Plain JavaScript for logic simplicity
 
 ---

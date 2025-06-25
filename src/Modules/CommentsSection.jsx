@@ -15,8 +15,6 @@ import { COMMENTS } from "../Constants";
 export default function CommentsSection() {
   const [comments, setComments] = useState(COMMENTS);
   const [newComment, setNewComment] = useState("");
-  // const [replyingTo, setReplyingTo] = useState(null);
-  // const [replyContent, setReplyContent] = useState("");
 
   const addComment = () => {
     if (newComment.trim()) {
@@ -34,30 +32,6 @@ export default function CommentsSection() {
       setNewComment("");
     }
   };
-
-  // const addReply = (parentId) => {
-  //   if (replyContent.trim()) {
-  //     const reply = {
-  //       id: `${parentId}-${Date.now()}`,
-  //       author: "You",
-  //       content: replyContent.trim(),
-  //       timestamp: new Date(),
-  //       likes: 0,
-  //       dislikes: 0,
-  //       replies: [],
-  //     };
-
-  //     setComments(
-  //       comments.map((comment) =>
-  //         comment.id === parentId
-  //           ? { ...comment, replies: [...comment.replies, reply] }
-  //           : comment
-  //       )
-  //     );
-  //     setReplyContent("");
-  //     setReplyingTo(null);
-  //   }
-  // };
 
   const formatTimeAgo = (date) => {
     const now = new Date();
@@ -97,52 +71,7 @@ export default function CommentsSection() {
               <ThumbsDown className="h-3 w-3 mr-1" />
               {comment.dislikes}
             </ButtonUI>
-            {/* {!isReply && (
-              <ButtonUI
-                variant="ghost"
-                size="sm"
-                className="h-6 px-2 text-xs"
-                onClick={() =>
-                  setReplyingTo(replyingTo === comment.id ? null : comment.id)
-                }
-              >
-                <Reply className="h-3 w-3 mr-1" />
-                Reply
-              </ButtonUI>
-            )} */}
           </div>
-
-          {/* {replyingTo === comment.id && (
-            <div className="mt-3 space-y-2">
-              <Textarea
-                placeholder="Write a reply..."
-                value={replyContent}
-                onChange={(e) => setReplyContent(e.target.value)}
-                rows={2}
-                className="text-sm"
-              />
-              <div className="flex space-x-2">
-                <ButtonUI size="sm" onClick={() => addReply(comment.id)}>
-                  Reply
-                </ButtonUI>
-                <ButtonUI
-                  variant="outline"
-                  size="sm"
-                  onClick={() => setReplyingTo(null)}
-                >
-                  Cancel
-                </ButtonUI>
-              </div>
-            </div>
-          )} */}
-
-          {/* {comment.replies.length > 0 && (
-            <div className="mt-4 space-y-3">
-              {comment.replies.map((reply) => (
-                <CommentItem key={reply.id} comment={reply} isReply={true} />
-              ))}
-            </div>
-          )} */}
         </div>
       </div>
     </div>
@@ -155,14 +84,18 @@ export default function CommentsSection() {
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Add Comment */}
-        <div className="space-y-3">
+        <div className="flex gap-3 items-end flex-col">
           <Textarea
             placeholder="Add a comment..."
             value={newComment}
             onChange={(e) => setNewComment(e.target.value)}
             rows={3}
           />
-          <ButtonUI onClick={addComment} disabled={!newComment.trim()}>
+          <ButtonUI
+            onClick={addComment}
+            disabled={!newComment.trim()}
+            className="cursor-pointer"
+          >
             Comment
           </ButtonUI>
         </div>

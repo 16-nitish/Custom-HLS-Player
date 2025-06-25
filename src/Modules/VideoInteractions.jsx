@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Bookmark, Plus, X, StickyNote } from "lucide-react";
+import { Heart, Bookmark, StickyNote } from "lucide-react";
 import { ButtonUI } from "../UI-Components/ButtonUI";
 import {
   Dialog,
@@ -77,17 +77,12 @@ export default function VideoInteractions({
           onClick={() => setIsAddingNote(true)}
           className="flex items-center space-x-2 cursor-pointer"
         >
-          <StickyNote className="h-4 w-4" />
+          <StickyNote className="size-4" />
           <span>Add Note</span>
         </ButtonUI>
 
         <Dialog open={isAddingNote} onOpenChange={setIsAddingNote}>
-          <DialogTrigger>
-            {/* <ButtonUI variant="outline" className="flex items-center space-x-2">
-              <Plus className="h-4 w-4" />
-              <span>Add Note</span>
-            </ButtonUI> */}
-          </DialogTrigger>
+          <DialogTrigger />
           <DialogContent>
             <DialogHeader>
               <DialogTitle>Add Note at {formatTime(currentTime)}</DialogTitle>
@@ -158,12 +153,11 @@ export default function VideoInteractions({
                       {formatTime(note.timestamp)}
                     </Badge>
                     <ButtonUI
-                      variant="ghost"
-                      size="sm"
+                      variant="secondary"
                       onClick={() => deleteNote(note.id)}
-                      className="h-6 w-6 p-0 hover:bg-red-100"
+                      className="size-6 p-0 cursor-pointer hover:bg-slate-100 "
                     >
-                      <X className="h-3 w-3" />
+                      <span>X</span>
                     </ButtonUI>
                   </div>
                   <p className="text-sm text-gray-700">{note.content}</p>
