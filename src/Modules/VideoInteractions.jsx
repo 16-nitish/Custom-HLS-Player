@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, Bookmark, Plus, X } from "lucide-react";
+import { Heart, Bookmark, Plus, X, StickyNote } from "lucide-react";
 import { ButtonUI } from "../UI-Components/ButtonUI";
 import {
   Dialog,
@@ -72,13 +72,21 @@ export default function VideoInteractions({
           <Bookmark className="h-4 w-4" />
           <span>Bookmark</span>
         </ButtonUI>
+        <ButtonUI
+          variant="outline"
+          onClick={() => setIsAddingNote(true)}
+          className="flex items-center space-x-2 cursor-pointer"
+        >
+          <StickyNote className="h-4 w-4" />
+          <span>Add Note</span>
+        </ButtonUI>
 
         <Dialog open={isAddingNote} onOpenChange={setIsAddingNote}>
           <DialogTrigger>
-            <ButtonUI variant="outline" className="flex items-center space-x-2">
+            {/* <ButtonUI variant="outline" className="flex items-center space-x-2">
               <Plus className="h-4 w-4" />
               <span>Add Note</span>
-            </ButtonUI>
+            </ButtonUI> */}
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -117,7 +125,7 @@ export default function VideoInteractions({
                 <Badge
                   key={index}
                   variant="secondary"
-                  className="cursor-pointer hover:bg-blue-100"
+                  className="cursor-pointer hover:bg-blue-100 hover:text-blue-500"
                   onClick={() => onSeekTo(bookmark)}
                 >
                   {formatTime(bookmark)}
@@ -137,11 +145,14 @@ export default function VideoInteractions({
           <CardContent>
             <div className="space-y-3">
               {notes.map((note) => (
-                <div key={note.id} className="border rounded-lg p-3 bg-gray-50">
+                <div
+                  key={note.id}
+                  className="ring ring-slate-200  rounded-lg p-3"
+                >
                   <div className="flex items-center justify-between mb-2">
                     <Badge
-                      variant="outline"
-                      className="cursor-pointer hover:bg-blue-100"
+                      variant="secondary"
+                      className="cursor-pointer hover:bg-blue-100 hover:text-blue-500"
                       onClick={() => onSeekTo(note.timestamp)}
                     >
                       {formatTime(note.timestamp)}
